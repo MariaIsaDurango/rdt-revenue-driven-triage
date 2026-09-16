@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>RDT - Revenue-Driven Triage</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>RDT · Motor de Triage Inteligente</h1>
+    <p class="subtitle">Clasificación asistida por LLM con razonamiento ReAct</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Nuevo reporte de incidencia</h2>
+      <form id="triage-form">
+        <label for="feedback_text">Texto del reporte</label>
+        <textarea id="feedback_text" rows="4" required
+          placeholder="Ej: Llevo 3 días sin agua caliente y nadie me responde"></textarea>
+
+        <label for="provider">Proveedor LLM</label>
+        <select id="provider">
+          <option value="ollama">Ollama (local)</option>
+          <option value="external">Groq (externo)</option>
+        </select>
+
+        <button type="submit" id="submit-btn">Analizar incidencia</button>
+      </form>
+      <p id="status-message"></p>
+    </section>
+
+    <section class="panel" id="result-panel" hidden>
+      <h2>Resultado del triage</h2>
+
+      <div class="result-grid">
+        <div><span class="label">Categoría</span><span id="r-category"></span></div>
+        <div><span class="label">Urgencia</span><span id="r-urgency" class="badge"></span></div>
+        <div><span class="label">Departamento</span><span id="r-department"></span></div>
+      </div>
+
+      <p class="label">Resumen</p>
+      <p id="r-summary"></p>
+
+      <p class="label">Razonamiento (ReAct)</p>
+      <p id="r-reasoning" class="reasoning-box"></p>
+
+      <p class="label">Métricas</p>
+      <div class="metrics-grid">
+        <div><span class="label">Latencia</span><span id="m-latency"></span></div>
+        <div><span class="label">Tokens in/out</span><span id="m-tokens"></span></div>
+        <div><span class="label">Coste estimado</span><span id="m-cost"></span></div>
+        <div><span class="label">Proveedor / Modelo</span><span id="m-provider"></span></div>
+      </div>
+
+      <div class="hitl-actions">
+        <p class="label">Revisión humana</p>
+        <button id="approve-btn" class="approve">✓ Aprobar</button>
+        <button id="reject-btn" class="reject">✗ Rechazar</button>
+        <p id="hitl-status"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
