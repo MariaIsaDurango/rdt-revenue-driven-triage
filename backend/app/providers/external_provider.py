@@ -1,6 +1,10 @@
 """
 External provider: connects to Groq's API (hosted open-source models).
 Groq offers a free tier with fast inference, used as our external comparison point.
+
+Note: llama-3.1-8b-instant was deprecated from Groq's free/developer tier on
+2026-08-16. Using openai/gpt-oss-20b as the current free-tier equivalent
+(Groq's own recommended migration path).
 """
 
 import os
@@ -9,7 +13,7 @@ from app.providers.base import LLMProvider
 
 
 class ExternalProvider(LLMProvider):
-    def __init__(self, model: str = "llama-3.1-8b-instant"):
+    def __init__(self, model: str = "openai/gpt-oss-20b"):
         self._model = model
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
