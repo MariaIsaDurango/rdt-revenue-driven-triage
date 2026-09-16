@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nordic · Tienda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shop.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">Nordic</div>
+      <nav class="main-nav">
+        <a href="#" class="active">Inicio</a>
+        <a href="#">Catálogo</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Contacto</a>
+      </nav>
+      <div class="header-icons">
+        <span class="icon-btn" aria-hidden="true">🔍</span>
+        <span class="icon-btn" aria-hidden="true">🛒</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Nueva colección</p>
+      <h1>Tecnología que se adapta<br>a tu día a día</h1>
+      <p class="hero-sub">Envío gratuito · Devoluciones en 30 días · Pago 100% seguro</p>
+    </div>
+  </section>
+
+  <main class="shop-main">
+    <div class="section-heading">
+      <h2>Más vendidos</h2>
+      <p>Selección de esta semana</p>
+    </div>
+
+    <div class="product-grid" id="product-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Nordic Demo Store · Proyecto RDT — este catálogo es un escenario simulado para disparar el sistema de triage, no una tienda real.</p>
+  </footer>
+
+  <div id="payment-modal" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <div id="modal-processing">
+        <div class="spinner"></div>
+        <p>Procesando pago...</p>
+      </div>
+
+      <div id="modal-failed" hidden>
+        <div class="error-icon" aria-hidden="true">!</div>
+        <h2>No se pudo procesar el pago</h2>
+        <p class="modal-product-name" id="modal-product-name"></p>
+        <label class="modal-hint" for="complaint-text">Cuéntanos qué pasó y lo revisaremos</label>
+        <textarea id="complaint-text" rows="3"
+          placeholder="Ej: Llevo varios intentos y no me deja pagar con mi tarjeta..."></textarea>
+        <p id="complaint-status"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="shop.js"></script>
+</body>
+</html>

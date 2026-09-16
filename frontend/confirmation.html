@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>RDT - Resultado del análisis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>RDT · Panel del operador</h1>
+    <p class="subtitle">Reporte generado desde la tienda — clasificado automáticamente</p>
+  </header>
+
+  <main>
+    <section class="panel" id="result-panel">
+      <h2>Resultado del triage</h2>
+      <p class="label">Producto</p>
+      <p id="r-product"></p>
+
+      <div class="result-grid">
+        <div><span class="label">Categoría</span><span id="r-category"></span></div>
+        <div><span class="label">Urgencia</span><span id="r-urgency" class="badge"></span></div>
+        <div><span class="label">Departamento</span><span id="r-department"></span></div>
+      </div>
+
+      <p class="label">Resumen</p>
+      <p id="r-summary"></p>
+
+      <p class="label">Razonamiento (ReAct)</p>
+      <p id="r-reasoning" class="reasoning-box"></p>
+
+      <p class="label">Evaluación de riesgo</p>
+      <div class="result-grid">
+        <div><span class="label">Financial risk</span><span id="risk-financial"></span></div>
+        <div><span class="label">Churn risk</span><span id="risk-churn"></span></div>
+        <div><span class="label">Risk score</span><span id="risk-score" class="badge"></span></div>
+      </div>
+      <p class="reasoning-box" id="risk-note" style="font-size: 12px;"></p>
+
+      <p class="label">Decisión</p>
+      <div class="result-grid">
+        <div><span class="label">Prioridad</span><span id="dec-priority" class="badge"></span></div>
+        <div><span class="label">Acción recomendada</span><span id="dec-action"></span></div>
+      </div>
+
+      <p class="label">Métricas</p>
+      <div class="metrics-grid">
+        <div><span class="label">Latencia</span><span id="m-latency"></span></div>
+        <div><span class="label">Tokens in/out</span><span id="m-tokens"></span></div>
+        <div><span class="label">Coste estimado</span><span id="m-cost"></span></div>
+        <div><span class="label">Proveedor / Modelo</span><span id="m-provider"></span></div>
+      </div>
+
+      <div class="hitl-actions">
+        <p class="label">Revisión humana</p>
+        <button id="approve-btn" class="approve">✓ Aprobar</button>
+        <button id="reject-btn" class="reject">✗ Rechazar</button>
+        <p id="hitl-status"></p>
+      </div>
+
+      <a href="shop.html" class="back-link">← Volver a la tienda</a>
+    </section>
+  </main>
+
+  <script src="confirmation.js"></script>
+</body>
+</html>

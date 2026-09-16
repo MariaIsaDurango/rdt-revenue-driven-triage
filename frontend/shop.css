@@ -1,0 +1,119 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #fafafa; color: #18181b; }
+
+.site-header { background: white; border-bottom: 1px solid #ececec; position: sticky; top: 0; z-index: 10; }
+.header-inner {
+  max-width: 1100px; margin: 0 auto; padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-weight: 700; font-size: 22px; letter-spacing: -0.5px; }
+
+.main-nav { display: flex; gap: 32px; }
+.main-nav a { color: #52525b; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+.main-nav a:hover, .main-nav a.active { color: #18181b; }
+
+.header-icons { display: flex; gap: 18px; font-size: 18px; }
+.icon-btn { cursor: pointer; opacity: 0.75; transition: opacity 0.15s; }
+.icon-btn:hover { opacity: 1; }
+
+.hero {
+  background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+  color: white;
+  padding: 64px 24px;
+  text-align: center;
+}
+.hero-inner { max-width: 600px; margin: 0 auto; }
+.hero-eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #a1a1aa; margin-bottom: 12px; font-weight: 600; }
+.hero h1 { font-size: 34px; font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+.hero-sub { color: #d4d4d8; font-size: 14px; }
+
+.shop-main { max-width: 1100px; margin: 0 auto; padding: 48px 24px; }
+.section-heading { margin-bottom: 28px; }
+.section-heading h2 { font-size: 22px; font-weight: 700; }
+.section-heading p { color: #71717a; font-size: 14px; margin-top: 4px; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+.product-image {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  background: #f4f4f5;
+}
+
+.product-body { padding: 16px; }
+.product-category { font-size: 11px; text-transform: uppercase; color: #a1a1aa; font-weight: 600; letter-spacing: 0.5px; }
+.product-name { font-weight: 600; font-size: 15px; margin: 4px 0 8px; }
+.product-price-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.product-price { font-weight: 700; font-size: 17px; }
+
+.buy-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #18181b;
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.buy-btn:hover { background: #3f3f46; }
+.buy-btn:active { transform: scale(0.98); }
+
+.site-footer {
+  text-align: center;
+  padding: 28px 24px;
+  color: #a1a1aa;
+  font-size: 12px;
+  border-top: 1px solid #ececec;
+}
+
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.modal-box { background: white; border-radius: 16px; padding: 32px; width: 380px; text-align: center; }
+
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #ececec;
+  border-top-color: #18181b;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-icon {
+  width: 44px; height: 44px;
+  background: #fee2e2; color: #dc2626;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800;
+  margin: 0 auto 14px;
+}
+
+.modal-product-name { color: #71717a; font-size: 13px; margin-top: -6px; margin-bottom: 4px; }
+.modal-hint { display: block; text-align: left; font-weight: 600; font-size: 13px; margin: 16px 0 6px; }
+#complaint-text { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #d4d4d8; font-size: 14px; font-family: inherit; resize: none; }
+#complaint-text:focus { outline: none; border-color: #18181b; }
+#complaint-status { font-size: 12px; color: #71717a; margin-top: 8px; min-height: 16px; }
+
+.modal-overlay[hidden] { display: none; }
