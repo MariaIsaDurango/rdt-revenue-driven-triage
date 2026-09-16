@@ -1,7 +1,8 @@
 """
 RDT Triage API - main entrypoint.
 Receives incident reports, runs them through an LLM using ReAct reasoning,
-validates the structured output, and returns triage results with metrics.
+validates the structured output, calculates risk deterministically,
+applies decision rules, and returns everything with metrics.
 """
 
 import json
@@ -13,10 +14,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 
-from app.models.schemas import TriageRequest, TriageResponse, TriageMetrics, TriageFullResponse
+from app.models.schemas import (
+    TriageRequest, TriageResponse, TriageMetrics, TriageFullResponse
+)
 from app.prompts.triage_prompt import SYSTEM_PROMPT, build_user_prompt
 from app.providers.ollama_provider import OllamaProvider
 from app.providers.external_provider import ExternalProvider
+from app.services.risk_engine import assess_risk
+from app.services.decision_engine import decide
 
 load_dotenv()
 
@@ -86,6 +91,15 @@ async def triage(request: TriageRequest):
             detail=f"Model output failed schema validation: {str(e)}"
         )
 
+    # Deterministic risk calculation — no LLM involved from here on.
+    risk_result = assess_risk(
+        transaction=request.transaction,
+        behavior=request.behavior,
+        urgency=triage_result.urgency,
+    )
+
+    decision_result = decide(risk_result.risk_score)
+
     costs = COST_PER_MILLION_TOKENS[request.provider]
     estimated_cost = (
         (input_tokens / 1_000_000) * costs["input"]
@@ -101,4 +115,9 @@ async def triage(request: TriageRequest):
         model=provider.model_name,
     )
 
-    return TriageFullResponse(triage=triage_result, metrics=metrics)
+    return TriageFullResponse(
+        triage=triage_result,
+        risk=risk_result,
+        decision=decision_result,
+        metrics=metrics,
+    )
