@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nordic · Mis pedidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="orders.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">Nordic</div>
+      <nav class="main-nav">
+        <a href="shop.html">Inicio</a>
+        <a href="orders.html" class="active">Mis pedidos</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Contacto</a>
+      </nav>
+      <div class="header-icons">
+        <span class="icon-btn" aria-hidden="true">🔍</span>
+        <span class="icon-btn" aria-hidden="true">🛒</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="orders-main">
+    <div class="section-heading">
+      <h2>Mis pedidos</h2>
+      <p>Historial de compras recientes</p>
+    </div>
+
+    <div id="orders-list"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Nordic Demo Store · Proyecto RDT — este historial es un escenario simulado para disparar el sistema de triage, no una tienda real.</p>
+  </footer>
+
+  <div id="report-modal" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <div id="modal-checking">
+        <div class="spinner"></div>
+        <p>Verificando estado del pedido...</p>
+      </div>
+
+      <div id="modal-mismatch" hidden>
+        <div class="error-icon" aria-hidden="true">!</div>
+        <h2>Pedido marcado como entregado</h2>
+        <p class="modal-product-name" id="modal-order-name"></p>
+        <div class="mismatch-box">
+          Nuestro sistema indica que este pedido fue entregado el <strong id="modal-delivery-date"></strong>.
+        </div>
+        <label class="modal-hint" for="report-text">Cuéntanos qué pasó y lo revisaremos</label>
+        <textarea id="report-text" rows="3"
+          placeholder="Ej: No he recibido nada en mi domicilio, revisé con vecinos y portería..."></textarea>
+        <p id="report-status"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="orders.js"></script>
+</body>
+</html>
