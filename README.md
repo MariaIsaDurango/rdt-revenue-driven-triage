@@ -27,29 +27,31 @@ Clasificación automática · Cálculo de riesgo determinista · Human-in-the-lo
 
 ## 🏗️ Arquitectura
 
+```
 Frontend (HTML/CSS/JS)
-shop.html / orders.html → escenarios de demo
-│
-▼ fetch()
+   shop.html / orders.html  →  escenarios de demo
+        │
+        ▼  fetch()
 FastAPI (/triage)
-│
-▼ Pydantic valida input
+        │
+        ▼  Pydantic valida input
 Provider Abstraction
-├── OllamaProvider (local)
-└── ExternalProvider (Groq)
-│
-▼ Prompt ReAct: Thought → Action → Observation → Final Answer
+   ├── OllamaProvider   (local)
+   └── ExternalProvider (Groq)
+        │
+        ▼  Prompt ReAct: Thought → Action → Observation → Final Answer
 Extracción y validación del JSON (Pydantic)
-│
-▼
-Risk Engine → Financial Risk · Churn Risk (heurístico)
-Decision Engine → Prioridad · Acción recomendada
-│
-▼
+        │
+        ▼
+Risk Engine       →  Financial Risk · Churn Risk (heurístico)
+Decision Engine   →  Prioridad · Acción recomendada
+        │
+        ▼
 Respuesta + métricas (latencia, tokens, coste)
-│
-▼
+        │
+        ▼
 confirmation.html → Revisión humana (✓ Aprobar / ✗ Rechazar)
+```
 
 
 ---
